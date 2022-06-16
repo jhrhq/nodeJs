@@ -53,7 +53,7 @@ app.get("/users", (req, res) => {
   const user = req.body;
   user.id = users.length + 1;
   users.push(user);
-  // res.send()
+  res.send(user);
 });
 
 app.get("/user/:id", (req, res) => {
