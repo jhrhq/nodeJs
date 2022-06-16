@@ -42,9 +42,11 @@ const users = [
     name: "Gonzales Love",
   },
 ];
+
 app.get("/", (req, res) => {
-  res.send("Hello World started with nodemon");
+  res.send("Hello World");
 });
+
 app.get("/users", (req, res) => {
   res.send(users);
 });
@@ -52,8 +54,13 @@ app.get("/users", (req, res) => {
 app.get("/user/:id", (req, res) => {
   console.log(req.params);
   const id = req.params.id;
-  const user = users[id];
+  const user = users.find((user) => user.id == id);
+
   res.send(user);
+});
+
+app.get("/about", (req, res) => {
+  res.send("you just get inot the about me page");
 });
 
 app.listen(port, () => {
