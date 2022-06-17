@@ -4,6 +4,10 @@ const cors = require("cors");
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
+//user middleware
+app.use(cors());
+app.use(express.json());
+
 // user info and password
 // username: monogodbuserDipok
 // password: xzvTyBlzkpAmvMLr
@@ -16,29 +20,33 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
-/* client.connect((err) => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  console.log("db connected");
-  client.close();
-}); */
-
 async function run() {
   try {
     await client.connect();
-    const usersCollection = client.db("foodExpress").collection("user");
-    const user = { name: "mon", age: 20 };
-    const result = await usersCollection.insertOne(user);
-    console.log(`user inserted with id : ${result.insertedId}`);
+    const userCollection = client.db("foodExpress").collection("user");
+
+    // get users as api in the front end
+    app.get("/user", async (req, res) => {
+      const query = {};
+
+      const cursor = userCollection.find(query);
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+
+    // POST User : add a new user
+    app.post("/user", async (req, res) => {
+      const newUser = req.body;
+      console.log("adding newuser", newUser);
+      const result = await userCollection.insertOne(newUser);
+      res.send(result);
+    });
   } finally {
-    await client.close();
+    // await client.close();
   }
 }
 
 run().catch(console.dir);
-//user middleware
-app.use(cors());
-app.use(express.json());
 
 //get
 app.get("/", (req, res) => {
