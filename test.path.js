@@ -18,15 +18,8 @@ console.log("📂 path only join:", path.join("hello", "hi", "dir"));
 console.log("📂 path only resolve:", path.resolve("pong", "pung"));
 console.log("📂 path only parse:", path.parse(filePathname));
 
-const newfilePath = path.join(import.meta.dirname, "data", "index.txt");
+const newFilePath = path.join(import.meta.dirname, "data", "index.txt");
+fs.appendFileSync(newFilePath, "\n test new text", "utf-8");
 
-fs.writeFileSync(newfilePath, "📂 test new file path", "utf-8", (err) => {
-  if (err) {
-    console.log("❌ write file error:", err);
-  }
-  console.log("✅ write file success");
-});
-
-const data = fs.readFileSync(newfilePath, "utf-8");
-
-console.log("📂 Read file sync", data);
+const data = fs.readFileSync(newFilePath, "utf-8");
+console.log("📂 newFilePath only read:\n", data);
