@@ -4,8 +4,13 @@ import path from "node:path";
 import queryString from "node:querystring";
 
 const htmlFormPath = path.join(import.meta.dirname, "test.form.html");
-const customSaveFormDataPath = "../data";
-const savedFormDataPath = path.join(customSaveFormDataPath, "index.txt");
+
+const savedFormDataPath = path.join(
+  import.meta.dirname,
+  "..",
+  "data",
+  "index.txt",
+);
 
 const server = createServer((req, res) => {
   fs.readFile(htmlFormPath, "utf-8", (err, data) => {

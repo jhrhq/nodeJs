@@ -1,4 +1,5 @@
 
- new text added 
+ new text added
 ndFile
  ✅ Appended using async and await
+ {"name":"test user","email":"test@gmail.com"}
