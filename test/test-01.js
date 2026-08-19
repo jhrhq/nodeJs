@@ -11,7 +11,7 @@ const server = createServer((req, res) => {
   if (req.method === "GET" && pathname === "/") {
     res.writeHead(200, { "content-type": "text/html" });
     res.end("<h1>Home Page</h1>");
-  } else if (req.method === "GET" && pathname === "/api/users") {
+  } else if (req.method === "GET" && pathname === "/api/✅ users") {
     const user = [
       { id: 1, name: "Alice" },
       { id: 2, name: "Bob" },

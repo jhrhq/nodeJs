@@ -14,7 +14,7 @@ const data = fs.readFileSync("README.md", "utf-8");
 console.log("sync file data", data);
 
 // write file
-// async
+// asyncsetHeader
 /*fs.writeFile(
   "test.tsx",
   "testing, testing , disting, disting",
