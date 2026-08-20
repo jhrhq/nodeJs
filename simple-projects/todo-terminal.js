@@ -22,7 +22,7 @@ const saveTasks = (tasks) => {
 };
 
 const showMenu = () => {
-  console.log("\n================ Todo Application ================\n");
+  console.log("\n======== Todo Application ========\n");
   console.log("1. 📝 Add Task");
   console.log("2. 📋 View Tasks");
   console.log("3. ❌ Delete Task");
