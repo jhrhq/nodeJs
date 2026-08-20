@@ -48,7 +48,9 @@ function handleMenu(option) {
       if (tasks.length === 0) {
         console.log("🚫 No task found.");
       } else {
-        tasks.forEach((task, index) => `${index + 1} ${task.title}`);
+        tasks.forEach((task, index) =>
+          console.log(`${index + 1} ${task.title}`),
+        );
       }
       showMenu();
 
@@ -61,8 +63,10 @@ function handleMenu(option) {
         showMenu();
         return;
       }
-      alltasks.forEach((task, index) => `${index + 1} ${task.title}`);
-
+      alltasks.forEach((task, index) =>
+        console.log(`${index + 1} ${task.title}`),
+      );
+      showMenu();
       rl.question("🗒️ Enter Task Number to Delete: ", (taskNumber) => {
         const index = parseInt(taskNumber - 1);
         if (index >= 0 && index < alltasks.length) {
