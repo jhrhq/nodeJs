@@ -6,20 +6,28 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "start": "node --watch index.js",
+    "tailwind:build": "postcss ./public/styles/styles.css -o ./public/styles/tailwind.css",
+    "dev": "concurrently \"pnpm:tailwind:build\" \"pnpm:start\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongodb": "^7.5.0"
+    "mongodb": "^7.5.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
-    "nodemon": "^3.1.14"
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "concurrently": "^10.0.5",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.26",
+    "postcss-cli": "^11.0.1"
   }
 }
