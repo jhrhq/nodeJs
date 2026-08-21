@@ -1,4 +1,4 @@
-const { createServer } = require("node:http");
+import { createServer } from "node:http";
 
 const PORT = 5000;
 
