@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --watch index.js",
-    "tailwind:build": "postcss ./public/styles/styles.css -o ./public/styles/tailwind.css",
+    "tailwind:build": "postcss ./public/styles/styles.css -o ./public/styles/tailwind.css --watch",
     "dev": "concurrently \"pnpm:tailwind:build\" \"pnpm:start\""
   },
   "author": "",
