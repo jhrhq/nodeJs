@@ -7,6 +7,7 @@ import notesRoutes from "./routes/notes.js";
 import todoRoutes from "./routes/todo.js";
 import ejs from "ejs";
 import { MongoClient } from "mongodb";
+import session from "express-session";
 
 // constants
 const port = process.env.PORT || 5000;
@@ -22,6 +23,17 @@ app.use(express.json());
 
 app.set("view engine", "ejs");
 app.use(express.static("public", { etag: true }));
+app.use(
+  session({
+    secret: "mysecret123",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 10_000 * 60 * 60, // 1 hour
+      httpOnly: true,
+    },
+  }),
+);
 
 function adminCheckMiddleware(req, res, next) {
   if (req.query.age < 18) {
@@ -64,6 +76,28 @@ app.use("/todo", todoRoutes);
 app.use("/db", async (req, res) => {
   await connectToMongoDB();
   res.end("db route");
+});
+
+// using session
+app.get("/login", (req, res) => {
+  req.session.user = "jhr";
+  res.send("Session created for user jhr");
+});
+app.get("/dashboard", (req, res) => {
+  if (req.session.user) {
+    res.send("Session created for user mohit");
+  } else {
+    res.send("Please login to access the dashboard");
+  }
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.send("err in loggint out");
+    }
+    res.send("you have successfully logged out");
+  });
 });
 
 app.use((req, res) => {
