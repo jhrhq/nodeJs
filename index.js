@@ -1,14 +1,16 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import "dotenv/config";
+// import dotenv from "dotenv";
 import userRoutes from "./routes/users.js";
 import notesRoutes from "./routes/notes.js";
 import todoRoutes from "./routes/todo.js";
+import todosRoutes from "./routes/todos.routes.js";
 import ejs from "ejs";
 import { MongoClient } from "mongodb";
 import session from "express-session";
 
+// dotenv.config();
 // constants
 const port = process.env.PORT || 5000;
 const uri = `mongodb://localhost:27017`;
@@ -49,20 +51,22 @@ app.use("/admin", (req, res, next) => {
   next();
 });
 
-async function connectToMongoDB() {
-  try {
-    await client.connect();
-    console.log("Connected directly to local MongoDB server.");
-    const db = client.db(DATABASE_NAME);
-    const collection = db.collection("test");
-    const data = await collection.find({}).toArray();
-    console.log("database: ", data);
-  } catch (err) {}
-}
+//TODO app only json
+// async function connectToMongoDB() {
+//   try {
+//     await client.connect();
+//     console.log("Connected directly to local MongoDB server.");
+//     const db = client.db(DATABASE_NAME);
+//     const collection = db.collection("test");
+//     const data = await collection.find({}).toArray();
+//     console.log("database: ", data);
+//   } catch (err) {}
+// }
 
 const filePath = path.resolve();
 
 app.get("/", (req, res) => {
+  todosRoutes;
   res.sendFile(path.join(filePath, "public", "views", "index.html"));
 });
 
@@ -73,6 +77,7 @@ app.get("/admin", adminCheckMiddleware, (req, res) => {
 app.use("/user", userRoutes);
 app.use("/notes", notesRoutes);
 app.use("/todo", todoRoutes);
+app.use("/todos", todosRoutes);
 app.use("/db", async (req, res) => {
   await connectToMongoDB();
   res.end("db route");
@@ -83,6 +88,7 @@ app.get("/login", (req, res) => {
   req.session.user = "jhr";
   res.send("Session created for user jhr");
 });
+
 app.get("/dashboard", (req, res) => {
   if (req.session.user) {
     res.send("Session created for user mohit");
