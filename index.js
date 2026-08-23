@@ -9,6 +9,7 @@ import todosRoutes from "./routes/todos.routes.js";
 import ejs from "ejs";
 import { MongoClient } from "mongodb";
 import session from "express-session";
+import { errorHandler } from "./middleware/error.middleware.js";
 
 // dotenv.config();
 // constants
@@ -109,6 +110,8 @@ app.get("/logout", (req, res) => {
 app.use((req, res) => {
   res.status(404).sendFile(path.join(filePath, "public", "views", "404.html"));
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log("listening " + port);
