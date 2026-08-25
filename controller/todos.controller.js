@@ -1,5 +1,5 @@
-import { asyncHandler } from '../middleware/asyncHandler.js';
 import Todo from '../model/todos.model.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 export const createTodo = asyncHandler(async (req, res) => {
   const { title, description } = req.body;

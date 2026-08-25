@@ -1,9 +1,8 @@
+// import { MongoClient } from "mongodb";
+import path from 'node:path';
 import cors from 'cors';
-import ejs from 'ejs';
 import express from 'express';
 import session from 'express-session';
-import { MongoClient } from 'mongodb';
-import path from 'path';
 import { errorHandler } from './middleware/error.middleware.js';
 import notesRoutes from './routes/notes.js';
 import todoRoutes from './routes/todo.js';
@@ -12,13 +11,14 @@ import todosRoutes from './routes/todos.routes.js';
 import userRoutes from './routes/users.js';
 
 // dotenv.config();
+// model_parameters
 // constants
 const port = process.env.PORT || 5000;
-const uri = `mongodb://localhost:27017`;
-const DATABASE_NAME = 'myDB';
+// const uri = `mongodb://localhost:27017`;
+// const DATABASE_NAME = "myDB";
 // const ObjectId = require("mongodb").ObjectId;
 const app = express();
-const client = new MongoClient(uri);
+// const client = new MongoClient(uri);
 
 //user middleware
 app.use(cors());
@@ -47,31 +47,31 @@ function adminCheckMiddleware(req, res, next) {
 }
 
 // route level middleware
-app.use('/admin', (req, res, next) => {
+app.use('/admin', (_req, _res, next) => {
   console.log('admin section accessed!');
   next();
 });
 
-//TODO app only json
-// async function connectToMongoDB() {
-//   try {
-//     await client.connect();
-//     console.log("Connected directly to local MongoDB server.");
-//     const db = client.db(DATABASE_NAME);
-//     const collection = db.collection("test");
-//     const data = await collection.find({}).toArray();
-//     console.log("database: ", data);
-//   } catch (err) {}
-// }
+/* TODO app only json
+async function connectToMongoDB() {
+  try {
+    await client.connect();
+    console.log("Connected directly to local MongoDB server.");
+    const db = client.db(DATABASE_NAME);
+    const collection = db.collection("test");
+    const data = await collection.find({}).toArray();
+    console.log("database: ", data);
+  } catch (err) {}
+} */
 
 const filePath = path.resolve();
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   todosRoutes;
   res.sendFile(path.join(filePath, 'public', 'views', 'index.html'));
 });
 
-app.get('/admin', adminCheckMiddleware, (req, res) => {
+app.get('/admin', adminCheckMiddleware, (_req, res) => {
   res.sendFile(path.join(filePath, 'public', 'views', 'admin.html'));
 });
 
@@ -79,8 +79,8 @@ app.use('/user', userRoutes);
 app.use('/notes', notesRoutes);
 app.use('/todo', todoRoutes);
 app.use('/todos', todosRoutes);
-app.use('/db', async (req, res) => {
-  await connectToMongoDB();
+app.use('/db', (_req, res) => {
+  // await connectToMongoDB();
   res.end('db route');
 });
 
@@ -107,12 +107,12 @@ app.get('/logout', (req, res) => {
   });
 });
 
-app.use((req, res) => {
+app.use((_req, res) => {
   res.status(404).sendFile(path.join(filePath, 'public', 'views', '404.html'));
 });
 
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log('listening ' + port);
+  console.log(`listening   ${port}`);
 });
