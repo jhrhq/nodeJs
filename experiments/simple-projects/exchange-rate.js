@@ -1,7 +1,6 @@
-import readline from "node:readline";
+import readline from 'node:readline';
 
 const conversion_rates = {
-  USD: 1,
   AED: 3.6725,
   AFN: 65.2464,
   ALL: 79.9301,
@@ -150,6 +149,7 @@ const conversion_rates = {
   TZS: 2642.7169,
   UAH: 44.7373,
   UGX: 3703.3107,
+  USD: 1,
   UYU: 40.1348,
   UZS: 11801.4304,
   VES: 777.4161,
@@ -169,8 +169,7 @@ const conversion_rates = {
   ZWL: 26.6552,
 };
 
-const EXCHANGE_RATE_API =
-  "https://v6.exchangerate-api.com/v6/04a4c5e34c8dd2e31f393b77/latest";
+const EXCHANGE_RATE_API = 'https://v6.exchangerate-api.com/v6/04a4c5e34c8dd2e31f393b77/latest';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -183,7 +182,7 @@ async function getExchangeRate(from, to, amount) {
     const value = await res.json();
     const rates = value.conversion_rates;
     if (!rates[to.toUpperCase()]) {
-      console.log("🚫 Currency code: " + to + " not found");
+      console.log('🚫 Currency code: ' + to + ' not found');
       return;
     }
     const convertedAmount = amount * rates[to.toUpperCase()];
@@ -191,13 +190,13 @@ async function getExchangeRate(from, to, amount) {
       `#️⃣ Amount ${amount} from ${from.toUpperCase()} = ${convertedAmount.toFixed(2)} ${to.toUpperCase()}`,
     );
   } catch (error) {
-    console.log("🚫 Error fetching exchange rates: ", error?.message);
+    console.log('🚫 Error fetching exchange rates: ', error?.message);
   }
 }
 
-rl.question("💵 Enter target currency: ", (from) => {
-  rl.question("💶 Enter base currency: ", (to) => {
-    rl.question("#️⃣ Enter Amount: ", (amount) => {
+rl.question('💵 Enter target currency: ', (from) => {
+  rl.question('💶 Enter base currency: ', (to) => {
+    rl.question('#️⃣ Enter Amount: ', (amount) => {
       getExchangeRate(from, to, amount);
       rl.close();
     });

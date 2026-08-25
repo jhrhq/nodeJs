@@ -1,25 +1,25 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const hospitalSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
     addresLin1: {
-      type: String,
       required: true,
+      type: String,
     },
     addresLin2: {
       type: String,
     },
     city: {
-      type: String,
       required: true,
+      type: String,
+    },
+    name: {
+      required: true,
+      type: String,
     },
     pincode: {
-      type: String,
       required: true,
+      type: String,
     },
     specializedIn: {
       type: [{ type: String }],
@@ -28,4 +28,4 @@ const hospitalSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export const Hospital = mongoose.model("Hospital", hospitalSchema);
+export const Hospital = mongoose.model('Hospital', hospitalSchema);

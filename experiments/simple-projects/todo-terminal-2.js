@@ -1,8 +1,8 @@
-import fs from "node:fs";
-import path from "node:path";
-import readline from "node:readline";
+import fs from 'node:fs';
+import path from 'node:path';
+import readline from 'node:readline';
 
-const FILE_NAME = "tasks.json";
+const FILE_NAME = 'tasks.json';
 
 const filePath = path.join(import.meta.dirname, FILE_NAME);
 /**
@@ -24,12 +24,12 @@ const rl = readline.createInterface({
 });
 
 function showMenu() {
-  console.log("\n================ Todo Application ================\n");
-  console.log("1. 📝 Add Task");
-  console.log("2. 📋 View Tasks");
-  console.log("3. ❌ Delete Task");
-  console.log("4. 🔚 Exit\n");
-  rl.question("🔘 Choose an option: ", handleOptions);
+  console.log('\n================ Todo Application ================\n');
+  console.log('1. 📝 Add Task');
+  console.log('2. 📋 View Tasks');
+  console.log('3. ❌ Delete Task');
+  console.log('4. 🔚 Exit\n');
+  rl.question('🔘 Choose an option: ', handleOptions);
 }
 
 function loadTasks() {
@@ -47,51 +47,49 @@ function viewAllTasks() {
     showMenu();
     return;
   } else {
-    allTasks.forEach((task, index) =>
-      console.log(`📋 ${index + 1} ${task.title}`),
-    );
+    allTasks.forEach((task, index) => console.log(`📋 ${index + 1} ${task.title}`));
   }
 }
 
 function handleOptions(option) {
   switch (option) {
-    case "1":
-      rl.question("🗒️ Enter Task: ", (task) => {
+    case '1':
+      rl.question('🗒️ Enter Task: ', (task) => {
         const tasks = loadTasks();
-        tasks.push({ title: task, done: false });
-        console.log("✅ Task added successfully!");
+        tasks.push({ done: false, title: task });
+        console.log('✅ Task added successfully!');
 
         saveTasks(tasks);
         showMenu();
       });
       break;
-    case "2":
+    case '2':
       viewAllTasks();
       showMenu();
       break;
-    case "3":
+    case '3':
       viewAllTasks();
 
-      rl.question("🗒️ Enter Task Number to Delete Task: ", (taskNumber) => {
+      rl.question('🗒️ Enter Task Number to Delete Task: ', (taskNumber) => {
         const tasklist = loadTasks();
         const index = parseInt(taskNumber) - 1;
 
         if (index >= 0 && index <= tasklist.length) {
           tasklist.splice(index, 1);
           saveTasks(tasklist);
-          console.log("✅ Task deleted successfully.");
+          console.log('✅ Task deleted successfully.');
         } else {
-          console.log("🚫 Invalid task number.");
+          console.log('🚫 Invalid task number.');
         }
         showMenu();
       });
       break;
-    case "4":
-      console.log("🔚 Exiting...");
+    case '4':
+      console.log('🔚 Exiting...');
       rl.close();
       break;
     default:
-      console.log("🚫 Invalid option. Please try again.");
+      console.log('🚫 Invalid option. Please try again.');
       showMenu();
   }
 }

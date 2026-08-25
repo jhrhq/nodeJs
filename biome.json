@@ -1,80 +1,137 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.8/schema.json",
+  "$schema": "https://biomejs.dev/schemas/latest/schema.json",
   "assist": {
-    "enabled": true,
-    "includes": ["**", "!./packages/@biomejs/biome/configuration_schema.json"],
     "actions": {
       "source": {
-        "useSortedKeys": "off",
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedEnumMembers": "on",
+        "useSortedInterfaceMembers": "on",
+        "useSortedKeys": {
+          "level": "on",
+          "options": {
+            "sortOrder": "natural"
+          }
+        }
       }
-    }
-  },
-  "css": {
-    "linter": {
-      "enabled": true
-    }
+    },
+    "enabled": true
   },
   "files": {
     "includes": [
-      "**/packages/aria-data/*.js",
-      "**/packages/@biomejs/**",
-      "**/packages/prettier-compare/**",
-      "**/packages/tailwindcss-config-analyzer/**",
-      "**/benchmark/**",
-      "plugins/*.js",
-      "scripts/**",
-      "!**/crates",
+      "**",
+      "!**/*.generated.js",
       "!!**/dist",
-      "!**/packages/@biomejs/backend-jsonrpc/src/workspace.ts",
-      "!**/__snapshots__",
-      "!**/undefined",
-      "!**/benchmark/target",
-      "!**/benches",
-      "!!**/e2e-tests",
-      "!!**/target",
-      "!!.cargo"
+      "!!**/node_modules",
+      "!!*.env",
+      "!!*.css"
     ]
   },
   "formatter": {
-    "includes": ["**", "!**/configuration_schema.json"]
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    },
+    "globals": ["NodeJS"]
   },
   "json": {
     "formatter": {
+      "enabled": true,
       "indentStyle": "space",
-      "lineWidth": 1
+      "indentWidth": 2,
+      "trailingCommas": "none"
+    },
+    "linter": {
+      "enabled": true
     }
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "style": {
-        "noParameterAssign": "error",
-        "useDefaultParameterLast": "error",
-        "useSingleVarDeclarator": "error",
-        "useConst": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error",
-        "useSelfClosingElements": "error",
-        "useNumberNamespace": "error",
-        "useAsConstAssertion": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useTemplate": "error",
-        "useEnumInitializers": "error"
+      "a11y": "off",
+      "complexity": {
+        "noEmptyTypeParameters": "error",
+        "noExcessiveCognitiveComplexity": {
+          "level": "warn",
+          "options": {
+            "maxAllowedComplexity": 15
+          }
+        },
+        "noImportantStyles": "off",
+        "noUselessCatch": "error",
+        "noUselessConstructor": "error",
+        "noUselessTypeConstraint": "error",
+        "noVoid": "error",
+        "useLiteralKeys": "error",
+        "useSimplifiedLogicExpression": "warn"
       },
       "correctness": {
-        "noUndeclaredDependencies": "error"
-      },
-      "suspicious": {
-        "noVar": "on",
-        "noImportCycles": "error"
+        "noGlobalDirnameFilename": "warn",
+        "noNodejsModules": "off",
+        "noUndeclaredVariables": "error",
+        "noUnsafeOptionalChaining": "error",
+        "noUnusedFunctionParameters": "warn",
+        "noUnusedImports": "error",
+        "noUnusedVariables": {
+          "fix": "none",
+          "level": "error"
+        },
+        "useImportExtensions": "off"
       },
       "nursery": {
-        "noFloatingPromises": "error"
+        "noEmptyObjectKeys": "error",
+        "noRestrictedDependencies": "off",
+        "noTopLevelLiterals": "warn",
+        "noUntrustedLicenses": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "error",
+        "noDelete": "warn",
+        "useTopLevelRegex": "warn"
+      },
+      "style": {
+        "noDefaultExport": "off",
+        "noParameterProperties": "error",
+        "useConst": "error",
+        "useEnumInitializers": "warn",
+        "useExportType": "error",
+        "useImportType": "error",
+        "useNodeAssertStrict": "error",
+        "useNodejsImportProtocol": "error",
+        "useTemplate": "error",
+        "useThrowNewError": "error",
+        "useThrowOnlyError": "error"
+      },
+      "suspicious": {
+        "noBiomeFirstException": "error",
+        "noConsole": {
+          "level": "off",
+          "options": {
+            "allow": ["info", "warn", "error"]
+          }
+        },
+        "noDoubleEquals": "error",
+        "noDuplicateDependencies": "error",
+        "noDuplicateObjectKeys": "error",
+        "noEvolvingTypes": "error",
+        "noExplicitAny": "warn",
+        "noFocusedTests": "error",
+        "noQuickfixBiome": "info",
+        "noSkippedTests": "warn",
+        "useAwait": "error",
+        "useBiomeIgnoreFolder": "warn"
       }
     }
   },
-  "plugins": ["plugins/no-object-assign.grit"],
   "vcs": {
     "clientKind": "git",
     "enabled": true,

@@ -1,34 +1,34 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const doctorSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
+    exprienceInYears: {
+      default: 0,
+      type: Number,
     },
-    salary: {
-      type: String,
+    name: {
       required: true,
+      type: String,
     },
     qualification: {
-      type: String,
       required: true,
+      type: String,
     },
-    exprienceInYears: {
-      type: Number,
-      default: 0,
+    salary: {
+      required: true,
+      type: String,
     },
     worksInHospitals: {
+      required: true,
       type: [
         {
+          ref: 'Hospital',
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Hospital",
         },
       ],
-      required: true,
     },
   },
   { timestamps: true },
 );
 
-export const Doctor = mongoose.model("Doctor", doctorSchema);
+export const Doctor = mongoose.model('Doctor', doctorSchema);

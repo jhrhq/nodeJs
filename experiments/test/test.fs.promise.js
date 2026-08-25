@@ -1,26 +1,26 @@
-import { writeFile } from "node:fs/promises";
-import fs from "node:fs";
-import util from "node:util";
-import path from "node:path";
+import fs from 'node:fs';
+import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import util from 'node:util';
 
-const filepath = path.join(import.meta.dirname, "data", "index.txt");
+const filepath = path.join(import.meta.dirname, 'data', 'index.txt');
 
-writeFile(filepath, "\n new text added \n")
-  .then((res) => console.log("✅ Write Successfull "))
-  .catch((err) => console.log("❌ write failed", err));
+writeFile(filepath, '\n new text added \n')
+  .then((res) => console.log('✅ Write Successfull '))
+  .catch((err) => console.log('❌ write failed', err));
 
 const appendFilePromise = util.promisify(fs.appendFile);
 
-appendFilePromise(filepath, "\n promisified appendFile")
-  .then((res) => console.log("✅ Promisified append Successfull "))
-  .catch((err) => console.log("❌ append failed", err));
+appendFilePromise(filepath, '\n promisified appendFile')
+  .then((res) => console.log('✅ Promisified append Successfull '))
+  .catch((err) => console.log('❌ append failed', err));
 
 // using async await
 async function appendText() {
   try {
-    await appendFilePromise(filepath, "\n ✅ Appended using async and await");
+    await appendFilePromise(filepath, '\n ✅ Appended using async and await');
   } catch (err) {
-    console.log("❌ append failed", err);
+    console.log('❌ append failed', err);
   }
 }
 appendText();

@@ -1,17 +1,5 @@
 {
-  "name": "node-project",
-  "version": "1.0.0",
-  "description": "its practice purpose",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch index.js",
-    "tailwind:build": "postcss ./public/styles/styles.css -o ./public/styles/tailwind.css --watch",
-    "dev": "concurrently \"pnpm:tailwind:build\" \"pnpm:start\""
-  },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "body-parser": "^2.3.0",
@@ -24,6 +12,7 @@
     "mongoose": "^9.9.3",
     "tailwindcss": "^4.3.3"
   },
+  "description": "The goal of this repository is to practice building production-ready, scalable, and secure RESTful APIs, understanding database paradigms (NoSQL vs. Relational), implementing authentication workflows, and writing clean, maintainable backend code.",
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
     "@tailwindcss/postcss": "^4.3.3",
@@ -32,5 +21,19 @@
     "nodemon": "^3.1.14",
     "postcss": "^8.5.26",
     "postcss-cli": "^11.0.1"
-  }
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "name": "node-project",
+  "scripts": {
+    "check": "pnpm biome check --write .",
+    "dev": "concurrently \"pnpm:tailwind:build\" \"pnpm:start\"",
+    "format": "pnpm biome format --write .",
+    "lint": "pnpm biome lint --write .",
+    "start": "node --watch index.js",
+    "tailwind:build": "postcss ./public/styles/styles.css -o ./public/styles/tailwind.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "version": "1.0.0"
 }

@@ -16,8 +16,8 @@ const server = createServer((req, res) => {
       { id: 1, name: "Alice" },
       { id: 2, name: "Bob" },
     ];
-    (res.writeHead(200, { "content-type": "application/json" }),
-      res.end(JSON.stringify(user)));
+    res.writeHead(200, { "content-type": "application/json" });
+    res.end(JSON.stringify(user));
   } else if (req.method === "GET" && pathname === "/great") {
     const name = parsedUrl.searchParams.get("name") || "Guest";
     const title = parsedUrl.searchParams.get("title") || "Visitor";

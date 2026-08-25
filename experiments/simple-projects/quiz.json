@@ -1,23 +1,23 @@
 [
   {
-    "id": 1,
-    "question": "Which HTTP status code represents 'Not Found'?",
-    "options": ["200", "401", "404", "500"],
+    "answer": "2",
     "correctAnswer": "404",
-    "answer": "2"
+    "id": 1,
+    "options": ["200", "401", "404", "500"],
+    "question": "Which HTTP status code represents 'Not Found'?"
   },
   {
-    "id": 2,
-    "question": "Which data structure operates on a Last-In, First-Out (LIFO) basis?",
-    "options": ["Queue", "Stack", "Array", "Linked List"],
+    "answer": "1",
     "correctAnswer": "Stack",
-    "answer": "1"
+    "id": 2,
+    "options": ["Queue", "Stack", "Array", "Linked List"],
+    "question": "Which data structure operates on a Last-In, First-Out (LIFO) basis?"
   },
   {
-    "id": 3,
-    "question": "What is the time complexity of a binary search algorithm in the worst case?",
-    "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+    "answer": "2",
     "correctAnswer": "O(log n)",
-    "answer": "2"
+    "id": 3,
+    "options": ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+    "question": "What is the time complexity of a binary search algorithm in the worst case?"
   }
 ]

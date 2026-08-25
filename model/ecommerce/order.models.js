@@ -1,41 +1,41 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const orderItemSchema = new mongoose.Schema({
   productId: {
+    ref: 'Product',
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product",
   },
   quantity: {
-    type: Number,
-    required: true,
     default: 0,
+    required: true,
+    type: Number,
   },
 });
 
 const orderSchema = new mongoose.Schema(
   {
-    orderPrice: {
-      type: Number,
+    address: {
       required: true,
+      type: String,
     },
     customer: {
+      ref: 'User',
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
     },
     orderItems: {
       type: [orderItemSchema],
     },
-    address: {
-      type: String,
+    orderPrice: {
       required: true,
+      type: Number,
     },
     status: {
+      default: 'PENDING ',
+      enum: ['PENDING', 'CANCELLED', 'DELIVERED'],
       types: String,
-      enum: ["PENDING", "CANCELLED", "DELIVERED"],
-      default: "PENDING ",
     },
   },
   { timestamps: true },
 );
 
-export const Order = mongoose.model("Order", orderSchema);
+export const Order = mongoose.model('Order', orderSchema);

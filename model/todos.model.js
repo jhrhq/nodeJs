@@ -1,18 +1,18 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const todoSchema = new mongoose.Schema(
   {
-    title: { type: String, required: [true, "Title is required"], trim: true },
     description: {
+      default: '',
       type: String,
-      default: "",
     },
     isCompleted: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
+    title: { required: [true, 'Title is required'], trim: true, type: String },
   },
   { timestamps: true },
 );
 
-export default mongoose.model("Todo", todoSchema);
+export default mongoose.model('Todo', todoSchema);

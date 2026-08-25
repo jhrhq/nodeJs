@@ -1,38 +1,38 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const patientSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    diagnosedWith: {
-      type: String,
-      required: true,
-    },
     address: {
+      required: true,
       type: String,
-      required: true,
-    },
-    age: {
-      type: Number,
-      required: true,
-    },
-    bloodGroup: {
-      type: String,
-      required: true,
-    },
-    gender: {
-      type: String,
-      enum: ["M", "F", "O"],
-      required: true,
     },
     admittedIn: {
+      ref: 'Hospital',
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hospital",
+    },
+    age: {
+      required: true,
+      type: Number,
+    },
+    bloodGroup: {
+      required: true,
+      type: String,
+    },
+    diagnosedWith: {
+      required: true,
+      type: String,
+    },
+    gender: {
+      enum: ['M', 'F', 'O'],
+      required: true,
+      type: String,
+    },
+    name: {
+      required: true,
+      type: String,
     },
   },
   { timestamps: true },
 );
 
-export const Patient = mongoose.model("Patient", patientSchema);
+export const Patient = mongoose.model('Patient', patientSchema);

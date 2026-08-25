@@ -1,17 +1,17 @@
-import { createServer } from "node:http";
-import os from "node:os";
-import fs from "node:fs";
+import fs from 'node:fs';
+import { createServer } from 'node:http';
+import os from 'node:os';
 
-console.log("OS platform", os.platform());
+console.log('OS platform', os.platform());
 
 //Async
-fs.readFile("README.md", "utf-8", (err, data) =>
-  err ? console.log("Error reading:", err) : console.log("file content", data),
+fs.readFile('README.md', 'utf-8', (err, data) =>
+  err ? console.log('Error reading:', err) : console.log('file content', data),
 );
 
 //sync
-const data = fs.readFileSync("README.md", "utf-8");
-console.log("sync file data", data);
+const data = fs.readFileSync('README.md', 'utf-8');
+console.log('sync file data', data);
 
 // write file
 // asyncsetHeader
@@ -38,9 +38,9 @@ fs.appendFile("test.tsx", "\n new testing, new disting", "utf-8", (err) =>
 ); */
 
 // delete file
-fs.unlink("test.txt", (err) => {
-  if (err) console.log("test.txt file deletion error", err);
-  console.log("✅ path/file.txt was deleted");
+fs.unlink('test.txt', (err) => {
+  if (err) console.log('test.txt file deletion error', err);
+  console.log('✅ path/file.txt was deleted');
 });
 
 const server = createServer((req, res) => {
@@ -48,10 +48,10 @@ const server = createServer((req, res) => {
   const parseUrl = new URL(req.url, baseUrl);
   const pathname = parseUrl.pathname;
 
-  if (req.method === "GET" && pathname === "/") {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.end("<h1>Hello, mom!</h1>");
+  if (req.method === 'GET' && pathname === '/') {
+    res.writeHead(200, { 'content-type': 'text/html' });
+    res.end('<h1>Hello, mom!</h1>');
   }
 });
 
-server.listen(3000, () => "server is listening on port" + "80");
+server.listen(3000, () => 'server is listening on port' + '80');
