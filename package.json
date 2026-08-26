@@ -10,6 +10,7 @@
     "express-session": "^1.19.0",
     "mongodb": "^7.5.0",
     "mongoose": "^9.9.3",
+    "multer": "^2.2.0",
     "tailwindcss": "^4.3.3"
   },
   "description": "The goal of this repository is to practice building production-ready, scalable, and secure RESTful APIs, understanding database paradigms (NoSQL vs. Relational), implementing authentication workflows, and writing clean, maintainable backend code.",

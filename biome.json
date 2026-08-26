@@ -7,7 +7,7 @@
         "useSortedEnumMembers": "on",
         "useSortedInterfaceMembers": "on",
         "useSortedKeys": {
-          "level": "on",
+          "level": "off",
           "options": {
             "sortOrder": "natural"
           }

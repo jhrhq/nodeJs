@@ -4,6 +4,7 @@ import cors from 'cors';
 import express from 'express';
 import session from 'express-session';
 import { errorHandler } from './middleware/error.middleware.js';
+import { upload } from './middleware/multer.middleware.js';
 import notesRoutes from './routes/notes.js';
 import todoRoutes from './routes/todo.js';
 import todosRoutes from './routes/todos.routes.js';
@@ -105,6 +106,21 @@ app.get('/logout', (req, res) => {
     }
     res.send('you have successfully logged out');
   });
+});
+
+app.post('/upload', upload.any(), (req, res) => {
+  try {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).send({ message: 'Please upload a file.' });
+    }
+    res.status(200).send({
+      success: true,
+      message: 'File uploaded successfully!',
+      fileDetails: req.file,
+    });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
 });
 
 app.use((_req, res) => {
